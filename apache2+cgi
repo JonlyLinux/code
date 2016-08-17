@@ -1,0 +1,19 @@
+sudo apt-get install apache2
+
+sudo a2enmod cgi 安装cgi模块
+
+cd /var/www & mkdir cgi-bin 创建cgi的目录
+
+
+打开/etc/apache2/sites-enabled/000-default.conf
+ScriptAlias /cgi-bin/ /var/www/cgi-bin/
+<Directory "/var/www/cgi-bin">
+AllowOverride None
+Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+Order allow,deny
+Allow from all
+AddHandler cgi-script .cgi .py .sh
+</Directory>
+
+
+sudo service apache2 restart/start/stop
